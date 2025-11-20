@@ -31,5 +31,3 @@ public class RootController {
         return ResponseEntity.ok(apiInfo);
     }
 }
-
-print("hello");
