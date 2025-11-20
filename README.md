@@ -39,23 +39,6 @@ GET /api/employees/email/{email}/hql
 GET /api/employees/email/{email}/native
 ```
 
-**Example:**
-```bash
-curl -X GET http://localhost:8080/api/employees/email/john.doe@example.com/hql
-```
-
-**Response:**
-```json
-{
-  "id": 1,
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john.doe@example.com",
-  "phone": "1234567890",
-  "address": "123 Main St"
-}
-```
-
 ### 2. Fetch Employee Details by Name
 
 #### Using JPA Specifications
@@ -73,31 +56,12 @@ GET /api/employees/name/{name}/hql
 GET /api/employees/name/{name}/native
 ```
 
-**Example:**
-```bash
-curl -X GET http://localhost:8080/api/employees/name/John/hql
-```
-
 ### 3. Create Employee (Name and Email) - Required
 
 ```
 POST /api/employees
 Content-Type: application/json
 
-{
-  "name": "Jane",
-  "email": "jane@example.com"
-}
-```
-
-**Example:**
-```bash
-curl -X POST http://localhost:8080/api/employees \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Jane","email":"jane@example.com"}'
-```
-
-**Response:** `201 Created`
 
 ### 4. Create Employee (Name, Email, and Phone) - Required
 
@@ -105,21 +69,6 @@ curl -X POST http://localhost:8080/api/employees \
 POST /api/employees
 Content-Type: application/json
 
-{
-  "name": "Bob",
-  "email": "bob@example.com",
-  "phone": "9876543210"
-}
-```
-
-**Example:**
-```bash
-curl -X POST http://localhost:8080/api/employees \
-  -H "Content-Type: application/json" \
-  -d '{"name":"Bob","email":"bob@example.com","phone":"9876543210"}'
-```
-
-**Response:** `201 Created`
 
 ### 5. Update Employee Details (Last Name, Phone, and Address)
 
@@ -127,41 +76,11 @@ curl -X POST http://localhost:8080/api/employees \
 PUT /api/employees/{email}
 Content-Type: application/json
 
-{
-  "lastName": "Smith",
-  "phone": "9999999999",
-  "address": "456 New St"
-}
-```
-
-**Example:**
-```bash
-curl -X PUT http://localhost:8080/api/employees/john.doe@example.com \
-  -H "Content-Type: application/json" \
-  -d '{"lastName":"Smith","phone":"9999999999","address":"456 New St"}'
-```
-
-**Response:** `200 OK`
-
 ### 6. Update Employee Phone Only
 
 ```
 PATCH /api/employees/{email}/phone
 Content-Type: application/json
-
-{
-  "phone": "1111111111"
-}
-```
-
-**Example:**
-```bash
-curl -X PATCH http://localhost:8080/api/employees/john.doe@example.com/phone \
-  -H "Content-Type: application/json" \
-  -d '{"phone":"1111111111"}'
-```
-
-**Response:** `200 OK`
 
 ### 7. Delete Employee by Email
 
@@ -169,64 +88,12 @@ curl -X PATCH http://localhost:8080/api/employees/john.doe@example.com/phone \
 DELETE /api/employees/{email}
 ```
 
-**Example:**
-```bash
-curl -X DELETE http://localhost:8080/api/employees/john.doe@example.com
-```
-
-**Response:** `204 No Content`
-
 ### Bonus: Get All Employees
 
 ```
 GET /api/employees
 ```
 
-**Example:**
-```bash
-curl -X GET http://localhost:8080/api/employees
-```
-
-## Error Responses
-
-The API returns meaningful error messages with appropriate HTTP status codes:
-
-### 400 Bad Request
-```json
-{
-  "timestamp": "2024-01-15T10:30:00",
-  "status": 400,
-  "error": "Bad Request",
-  "message": "Employee with email already exists",
-  "path": "/api/employees"
-}
-```
-
-### 404 Not Found
-```json
-{
-  "timestamp": "2024-01-15T10:30:00",
-  "status": 404,
-  "error": "Not Found",
-  "message": "Employee not found with email: notfound@example.com",
-  "path": "/api/employees/email/notfound@example.com/hql"
-}
-```
-
-### Validation Errors (400 Bad Request)
-```json
-{
-  "timestamp": "2024-01-15T10:30:00",
-  "status": 400,
-  "error": "Validation Failed",
-  "message": "Invalid input data",
-  "errors": {
-    "name": "Name is required",
-    "email": "Email is required"
-  },
-  "path": "/api/employees"
-}
-```
 
 ## Running the Application
 
